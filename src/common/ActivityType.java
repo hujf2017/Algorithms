@@ -32,7 +32,7 @@ public enum ActivityType {
     public static String getDescByCode(String code) {
         ActivityType a [] =ActivityType.values();
         for (ActivityType e : a) {
-            System.out.println(e.code);
+            System.out.println(e.desc);
         }
         return null;
     }

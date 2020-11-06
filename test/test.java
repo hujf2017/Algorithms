@@ -2,6 +2,9 @@ import common.ActivityType;
 import org.junit.Test;
 import 比赛.ParkingSystem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Hujf
  * @title: test
@@ -25,5 +28,12 @@ public class test {
         System.out.println(a.addCar(1));
         System.out.println(a.addCar(2));
         System.out.println(a.addCar(3));
+    }
+
+    @Test
+    public void te(){
+        List a = new ArrayList();
+        a.add(1);
+
     }
 }
