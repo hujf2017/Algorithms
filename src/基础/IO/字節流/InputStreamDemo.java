@@ -67,13 +67,14 @@ public class InputStreamDemo {
 //            if(n==-1){
 //                break;
 //            }
-            System.out.println(n);
-            System.out.println(Arrays.toString(buf));
+          //  System.out.println(n);
+           // System.out.println(Arrays.toString(buf));
+            System.out.print(new String(buf,0,n));
+          //  sBuffer.append(new String(buf,0,n));
 
-            sBuffer.append(new String(buf,0,n));
 
         }
-        System.out.println(sBuffer.toString());
+      //  System.out.println(sBuffer.toString());
         input.close();
     }
 }
