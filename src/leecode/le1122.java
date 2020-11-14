@@ -1,6 +1,9 @@
 package leecode;
 
 import org.junit.Test;
+
+import java.util.*;
+
 /**
  * @author Hujf
  * @title: le1122
@@ -39,5 +42,35 @@ public class le1122 {
             }
         }
         System.out.println(a);
+    }
+
+
+
+    public int[] relativeSortArray2(int[] arr1, int[] arr2) {
+        //1.先用map 存一下 arr2
+        Map<Integer, Integer> map = new HashMap<>();
+        List<Integer> list = new ArrayList<>();
+        for(int num : arr1){
+            //得到需要排序的东西
+            list.add(num);
+        }
+        for(int i = 0; i < arr2.length; i++) {
+            //得到每个数的顺序
+            map.put(arr2[i], i);
+        }
+
+        Collections.sort(list,(x,y)->{
+            //如果存在，
+            if(map.containsKey(x) || map.containsKey(y)) {
+                return map.getOrDefault(x, 1001) - map.getOrDefault(y, 1001);
+            }
+            //不存在则返回字典序
+            return x - y;
+        });
+
+        for(int i = 0; i < arr1.length; i++) {
+            arr1[i] = list.get(i);
+        }
+        return arr1;
     }
 }
