@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
 public class join使用 {
     public static void main(String[] args) throws InterruptedException {
         //范围书
-        IntStream k = IntStream.range(1,3);
+        IntStream k = IntStream.range(1,5);
         System.out.println(IntStream.range(1,3).max());
         List<Thread> threads=  k.mapToObj(join使用::create).collect(Collectors.toList());
 //        threads.forEach(o->{
