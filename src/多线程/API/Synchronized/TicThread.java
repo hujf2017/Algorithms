@@ -9,7 +9,7 @@ package 多线程.API.Synchronized;
 public class TicThread implements Runnable {
     private int index = 1;
 
-    private final int max = 100;
+    private final int max = 10000;
     private   Object Mutex = new Object();
 
     @Override
