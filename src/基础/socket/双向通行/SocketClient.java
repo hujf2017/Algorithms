@@ -27,18 +27,20 @@ public class SocketClient {
 //          socket.shutdownOutput();
             outputStream.flush();
             //获取到输入流
-//            InputStream inputStream = socket.getInputStream();
-//            byte[] bytes = new byte[1024];
-//            int len;
-//            StringBuilder sbf = new StringBuilder();
-//            while ((len = inputStream.read(bytes)) != -1) {
-//                sbf.append(new String(bytes, 0, len, StandardCharsets.UTF_8));
-//            }
-//            System.out.println("get message " + sbf);
+            InputStream inputStream = socket.getInputStream();
+            byte[] bytes = new byte[1024];
+            int len;
+            StringBuilder sbf = new StringBuilder();
+            while ((len = inputStream.read(bytes)) != -1) {
+                sbf.append(new String(bytes, 0, len, StandardCharsets.UTF_8));
+            }
+            System.out.println("get message " + sbf);
+
+            inputStream.close();
+            outputStream.close();
+            socket.close();
         }
-//        inputStream.close();
-//        outputStream.close();
-//        socket.close();
+
 
 
     }

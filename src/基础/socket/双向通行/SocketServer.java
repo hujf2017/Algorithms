@@ -44,17 +44,18 @@ public class SocketServer {
 
             System.out.println("获取到信息：" + stringBuilder);
 
-//            OutputStream outputStream = socket.getOutputStream();
-//            Scanner scan = new Scanner(System.in);
-//            String s = scan.nextLine();
-//            outputStream.write(s.getBytes("UTF-8"));
-//            outputStream.flush();
+            OutputStream outputStream = socket.getOutputStream();
+            Scanner scan = new Scanner(System.in);
+            String s = scan.nextLine();
+            outputStream.write(s.getBytes("UTF-8"));
+            outputStream.flush();
+
+            inputStream.close();
+            outputStream.close();
+            socket.close();
+            server.close();
+
         }
-//        inputStream.close();
-//        outputStream.close();
-//        socket.close();
-//        server.close();
-        inputStream.close();
 
     }
 }
