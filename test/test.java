@@ -3,7 +3,9 @@ import org.junit.Test;
 import 比赛.ParkingSystem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Hujf
@@ -35,5 +37,14 @@ public class test {
         List a = new ArrayList();
         a.add(1);
 
+
+        Map<Integer,Integer> m = new HashMap<>();
+        m.put(1,m.getOrDefault(1,0));
+        for(Map.Entry<Integer,Integer> e :m.entrySet()){
+            System.out.println(e.getKey()+" "+e.getValue());
+        }
     }
+
+
+
 }
