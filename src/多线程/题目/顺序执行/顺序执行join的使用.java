@@ -6,7 +6,7 @@ package 多线程.题目.顺序执行;
  * @date 2020/11/24 0024下午 5:07
  * @description: join
  */
-public class 顺序执行 {
+public class 顺序执行join的使用 {
 
     public static void main(String[] args) {
         Thread t1 = new Thread(new Runnable() {

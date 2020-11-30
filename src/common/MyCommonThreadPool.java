@@ -1,6 +1,7 @@
 package common;
 
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author Hujf
@@ -16,10 +17,9 @@ public class MyCommonThreadPool {
 
     static ArrayBlockingQueue workQueue = new ArrayBlockingQueue(10);
 
-    public MyCommonThreadPool(int corePoolSize,
-                              int maxPoolSize,
-                              int keepAliveTime,
-                              ArrayBlockingQueue workQueue){
+
+    public MyCommonThreadPool() {
 
     }
+
 }
