@@ -11,7 +11,7 @@ import java.util.*;
  * @date 2020/11/9 0009上午 9:24
  * @description: TODO
  */
-public class le973 {
+public class le973优先级队列 {
     //Array方法
     public int[][] kClosest(int[][] points, int K) {
         Arrays.sort(points, new Comparator<int[]>() {

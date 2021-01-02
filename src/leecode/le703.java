@@ -16,6 +16,7 @@ import java.util.List;
 public class le703 {
     private int local ;
     List<Integer> kspp = new LinkedList<Integer>();
+
     public le703(int k, int[] nums) {
         this.local = k;
         Arrays.sort(nums);
@@ -38,16 +39,6 @@ public class le703 {
             asd++;
         }
          return kspp.get(local - 1);
-    }
-
-    @Test
-    public void t(){
-        le703 aasd = new le703(1, new int[]{});
-        System.out.println(aasd.add(-3));
-        System.out.println(aasd.add(-2));
-        System.out.println(aasd.add(-4));
-        System.out.println(aasd.add(0));
-        System.out.println(aasd.add(4));
     }
 }
 
