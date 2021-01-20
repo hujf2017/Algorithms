@@ -18,7 +18,8 @@ public class le704 {
             if(target<nums[mid]){
                 end = mid-1;
             }else if (target>nums[mid]){
-                start = mid+1;
+                start = mid+1
+                ;
             }else {
                 return mid;
             }

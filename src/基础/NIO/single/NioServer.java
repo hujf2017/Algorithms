@@ -48,6 +48,14 @@ public class NioServer {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            if(selector!=null){
+                try {
+                    selector.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
 
