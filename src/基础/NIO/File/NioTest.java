@@ -4,7 +4,10 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
 
 /**
  * @author Hujf
@@ -17,7 +20,7 @@ public class NioTest {
 
         RandomAccessFile aFile = null;
         try {
-            aFile = new RandomAccessFile("F:\\ziyuan\\[www.java1234.com]Java EE 7权威指南 卷1.pdf","rw");
+            aFile = new RandomAccessFile("F:\\ziyuan\\深入浅出Java多线程.pdf","rw");
             FileChannel channel = aFile.getChannel();
             //整个缓存区,分配空间
             ByteBuffer buf  = ByteBuffer.allocate(1024);
@@ -28,9 +31,13 @@ public class NioTest {
             while(byteRead!=-1){
                 //重置
                 buf.flip();
+                Charset charset = Charset.forName("GBK");
                 while(buf.hasRemaining()){
-                    //从Buffer中读取数据
-                    System.out.print((char)buf.get());
+                    CharsetDecoder charsetDecoder = charset.newDecoder();
+                    CharBuffer charBuffer = charsetDecoder.decode(buf);
+                  //  从Buffer中读取数据
+                    System.out.print(charBuffer);
+                 //   System.out.print((char)buf.get());
                 }
                 //调用clear()方法或者compact()方法
                 buf.compact();

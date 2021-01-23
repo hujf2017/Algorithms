@@ -70,8 +70,6 @@ public class InputStreamDemo {
            // System.out.println(Arrays.toString(buf));
             System.out.print(new String(buf,0,n));
             sBuffer.append(buf);
-
-
         }
       //  System.out.println(sBuffer.toString());
         input.close();
