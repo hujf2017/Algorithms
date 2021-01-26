@@ -42,40 +42,44 @@ public class ChatServer {
     }
 
     private void start() {
-        try {
-            ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
-            Selector selector = Selector.open();
+        while(true) {
+            try {
+                ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
+                Selector selector = Selector.open();
 
-            //通道绑定端口
-            serverSocketChannel.socket().bind(new InetSocketAddress(port));
-            //设置非阻塞
-            serverSocketChannel.configureBlocking(false);
-            //监听接收事件
-            serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
-            System.out.println("启动服务器，监听端口:" + port);
+                //通道绑定端口
+                serverSocketChannel.socket().bind(new InetSocketAddress(port));
+                //设置非阻塞
+                serverSocketChannel.configureBlocking(false);
+                //监听接收事件
+                serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+                System.out.println("启动服务器，监听端口:" + port);
 
 
+                //进入死循环  一直监听
+                while (true) {
+                    //有事件发生
+                    try {
+                        if (selector.select() > 0) {
+                            //得到事件
+                            Set<SelectionKey> skey = selector.selectedKeys();
 
-            //进入死循环  一直监听
-            while(true){
-                //有事件发生
-                if(selector.select()>0){
-                    //得到事件
-                    Set<SelectionKey> skey = selector.selectedKeys();;
-
-                    for(SelectionKey key :skey){
-                        //实际处理类
-                        handles(key,selector);
+                            for (SelectionKey key : skey) {
+                                //实际处理类
+                                handles(key, selector);
+                            }
+                            //处理完后清空selectedKeys，避免重复处理
+                            skey.clear();
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
                     }
-                    //处理完后清空selectedKeys，避免重复处理
-                    skey.clear();
                 }
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-
     }
 
     private void handles(SelectionKey key,Selector selector) throws IOException {

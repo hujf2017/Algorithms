@@ -16,72 +16,25 @@ public class 秋叶收藏集 {
     }
 
     public static int minimumOperations(String leaves) {
-        int[] last = new int[4];
-        int[] next = new int[4];
-        int a = Integer.MAX_VALUE;
-        int b =  (int) 1e8;
-        System.out.println(a==b);
-
-
-//        List<Integer> a = new ArrayList<>();
-//        int count = 1;
-//        int min = 1000000;
-//        for (int i = 1; i < leaves.length(); i++) {
-//
-//            if (leaves.charAt(i) != leaves.charAt(i - 1)) {
-//                a.add(count);
-//                count = 1;
-//            } else {
-//                count++;
-//            }
-//        }
-//        a.add(count);
-//
-//        if (a.size() == 1) {
-//            if (leaves.charAt(0) == 'r') {
-//                return 1;
-//            } else {
-//                return 2;
-//            }
-//        } else if (a.size() == 2) {
-//            if (leaves.charAt(0) == 'r') {
-//                if (a.get(0) == 1) {
-//                    return 1;
-//                } else {
-//                    return 2;
-//                }
-//            } else {
-//                if (a.get(0) == 1) {
-//                    return 2;
-//                } else {
-//                    return 1;
-//                }
-//            }
-//        }else if (a.size() == 3) {
-//            if (leaves.charAt(0) == 'r') {
-//                return 0;
-//            } else {
-//                if(a.get(0)==1||a.get(2)==1){
-//                    if(a.get(0)==1&&a.get(2)==1){
-//                        return 3;
-//                    }else{
-//                        return 2;
-//                    }
-//                }else{
-//                    if(1+Math.min(a.get(0),a.get(2))>2+a.get(1)){
-//                        return 2+a.get(1);
-//                    }else{
-//                        return 1+Math.min(a.get(0),a.get(2));
-//                    }
-//                }
-//            }
-//        }else {
-//            for (int i = 1; i < a.size() - 1; i++) {
-//                if (a.get(i) < min) {
-//                    min = a.get(i);
-//                }
-//            }
-//        }
-        return  a;
+        int n = leaves.length();
+        //调整操作次数 以及第 i 片叶子处于状态 0,1,2 时的最小操作次数
+        int[][] f = new int[n][3];
+        //第一片叶子 处于状态0的操作次数
+        f[0][0] = leaves.charAt(0) == 'y' ? 1 : 0;
+        //第一片叶子 处于状态1,2的操作次数  第二篇叶子处于状态2的次数 都是不可能的
+        f[0][1] = f[0][2] = f[1][2] = Integer.MAX_VALUE;
+        for (int i = 1; i < n; ++i) {
+            int isRed = leaves.charAt(i) == 'r' ? 1 : 0;
+            int isYellow = leaves.charAt(i) == 'y' ? 1 : 0;
+            //第ipian叶子处于状态0的操作次数  = 第i-1片叶子处于状态0的次数+ 是否需要修改
+            f[i][0] = f[i - 1][0] + isYellow;
+            //第ipian叶子处于状态1的操作次数  = 第i-1片叶子处于状态1和0的最小值   + 是否需要修改
+            f[i][1] = Math.min(f[i - 1][0], f[i - 1][1]) + isRed;
+            if (i >= 2) {
+                //第i片叶子处于状态2的最小操作 = 第i-1片叶子处于状态2和1的最小值
+                f[i][2] = Math.min(f[i - 1][1], f[i - 1][2]) + isYellow;
+            }
+        }
+        return f[n - 1][2];
     }
 }
