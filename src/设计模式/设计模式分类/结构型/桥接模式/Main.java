@@ -3,6 +3,7 @@ package 设计模式.设计模式分类.结构型.桥接模式;
 import 设计模式.设计模式分类.结构型.桥接模式.Abstraction.Shape;
 import 设计模式.设计模式分类.结构型.桥接模式.ConcreteImplementor.Color;
 import 设计模式.设计模式分类.结构型.桥接模式.Implementor.Black;
+import 设计模式.设计模式分类.结构型.桥接模式.Implementor.Green;
 import 设计模式.设计模式分类.结构型.桥接模式.Implementor.White;
 import 设计模式.设计模式分类.结构型.桥接模式.RefinedAbstraction.Rectangle;
 import 设计模式.设计模式分类.结构型.桥接模式.RefinedAbstraction.Square;
@@ -31,6 +32,10 @@ public class Main {
 
         Color black = new Black();
         square.setColor(black);
+        square.draw();
+
+        Color green = new Green();
+        square.setColor(green);
         square.draw();
     }
 }

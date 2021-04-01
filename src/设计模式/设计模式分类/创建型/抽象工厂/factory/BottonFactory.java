@@ -1,6 +1,8 @@
 package 设计模式.设计模式分类.创建型.抽象工厂.factory;
 
 import 设计模式.设计模式分类.创建型.工厂方法模式.Button;
+import 设计模式.设计模式分类.创建型.工厂方法模式.LinuxButton;
+import 设计模式.设计模式分类.创建型.工厂方法模式.WindowsButton;
 import 设计模式.设计模式分类.创建型.抽象工厂.Action;
 
 /**
@@ -15,8 +17,15 @@ public class BottonFactory extends AbstractFactory{
         return null;
     }
 
+
+
+
     @Override
     public Button getButton(String bType) {
-        return null;
+        if(bType.equals("window")){
+            return new WindowsButton();
+        }else{
+            return new LinuxButton();
+        }
     }
 }
