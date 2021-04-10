@@ -8,6 +8,9 @@ package leecode;
  */
 public class le263 {
     public boolean isUgly(int num) {
+        if(num<1){
+            return false;
+        }
         if(num==1){
             return true;
         }
