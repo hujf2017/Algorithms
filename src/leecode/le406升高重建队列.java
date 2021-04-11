@@ -19,14 +19,11 @@ public class le406升高重建队列 {
         }
         int mid[] =new int[len];
         //二维数组的排序 如果第一个相同 用第二个 负不交换位置 故前面减后面是递增
-        Arrays.sort(people, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                if(o1[0]==o2[0]){
-                    return o1[1]-o2[1];
-                }
-                return o1[0]-o2[0];
+        Arrays.sort(people, (o1, o2) -> {
+            if(o1[0]==o2[0]){
+                return o1[1]-o2[1];
             }
+            return o1[0]-o2[0];
         });
         int[][] aim =new int[len][2];
         boolean havedouZero =false;
