@@ -21,6 +21,12 @@ import java.util.Arrays;
  * 链接：https://leetcode-cn.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  *
+ *
+ * InputStreamReader in = new InputStreamReader(System.in);
+ * 		BufferedReader buf = new BufferedReader(in);
+ * 		num = Integer.valueOf(buf.readLine());
+ * 		str1 = buf.readLine().split(" ");// 中序
+ * 		str2 = buf.readLine().split(" ");// 后续
  */
 public class Dijkstra算法 {
     final int max = 100000;
