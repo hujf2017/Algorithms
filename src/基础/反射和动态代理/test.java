@@ -24,4 +24,12 @@ public class test {
         BaseOnClass instance = (BaseOnClass) bookProxy2.getInstance(new BaseOnClass());
         instance.addBook();
     }
+
+
+    @Test
+    public void t3(){
+        BookProxy2 bookProxy2 = new BookProxy2();
+        BashInter instance = (BashInter) bookProxy2.getInstance(new BaseOnClass());
+        instance.addBook();
+    }
 }

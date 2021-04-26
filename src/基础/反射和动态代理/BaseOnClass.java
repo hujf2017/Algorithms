@@ -15,7 +15,12 @@ import java.lang.reflect.Method;
 
 
 
-public class BaseOnClass {
+interface  BashInter{
+     void addBook();
+}
+
+public class BaseOnClass implements BashInter{
+    @Override
     public void addBook(){
         System.out.println("cglib@impl add book");
     }
