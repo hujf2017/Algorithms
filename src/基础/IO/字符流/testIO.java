@@ -2,10 +2,7 @@ package 基础.IO.字符流;
 
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 
 /**
  * @author Hujf
@@ -18,9 +15,9 @@ public class testIO {
     @Test
     public void t() throws IOException {
         String File = "F:\\ziyuan\\nacos\\nacos\\data\\A.txt";
+
+        FileInputStream out2 = new FileInputStream("sada.txt");
         //1.获取输出流
-        FileOutputStream out = new FileOutputStream(File);
-        String s = "sadasd";
-        out.write(s.getBytes());
+        FileInputStream out = new FileInputStream(File);
     }
 }
