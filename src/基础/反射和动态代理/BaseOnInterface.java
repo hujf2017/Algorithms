@@ -8,7 +8,7 @@ import java.lang.reflect.Proxy;
  * @author Hujf
  * @title: BaseOnInterface
  * @date 2021-04-26 9:36
- * @description: TODO
+ * @description: jdk动态代理  只能代理 BookInterface
  */
 
 interface BookInterface{

@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
  * @author Hujf
  * @title: BaseOnClass
  * @date 2021-04-26 9:49
- * @description: cglib  需要导入asm和cglib 包
+ * @description: cglib  需要导入asm和cglib 包   可以代理接口BashInter  也可以代理类BaseOnClass
  */
 
 
