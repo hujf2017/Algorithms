@@ -27,4 +27,15 @@ public class le1035 {
         }
         return dp[len1][len2];
     }
+
+    public static void main(String[] args) {
+        Long a =1L;
+        if(a!=null){
+            System.out.println(123);
+        }
+        String s = "as";
+        String s1 = "asd";
+        String s2 = s+"d";
+        System.out.println(s2==s1);
+    }
 }

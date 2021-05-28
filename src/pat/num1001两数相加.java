@@ -33,4 +33,8 @@ public class num1001两数相加 {
 
     }
 
+    public void ttt(){
+        System.out.println("test");
+    }
+
 }
