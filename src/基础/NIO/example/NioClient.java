@@ -19,8 +19,8 @@ public class NioClient {
     private static final int port = 8083;
     private Selector selector;
 
-    public static void main(String[] args){
-        for (int i=0;i<3;i++) {
+    public static void main(String[] args) throws InterruptedException {
+        for (int i=0;i<2;i++) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -62,7 +62,7 @@ public class NioClient {
 
                             socketChannel.configureBlocking(false);
                             socketChannel.register(selector, SelectionKey.OP_READ);
-                            socketChannel.write(ByteBuffer.wrap(("Hello this is " + Thread.currentThread().getName()).getBytes()));
+                            socketChannel.write(ByteBuffer.wrap(("Hello this is client" + Thread.currentThread().getName()).getBytes()));
                         } else if (selectionKey.isReadable()) {
                             SocketChannel sc = (SocketChannel) selectionKey.channel();
                             ByteBuffer buffer = ByteBuffer.allocate(1024);

@@ -23,5 +23,9 @@ public class 字符串引用 {
         System.out.println(s==s2);
         System.out.println(s.equals(s2));
 
+        String s1x = new StringBuilder("java").toString();
+        String s2x = s1x.intern();
+        System.out.println(s1x==s2x);
+
     }
 }

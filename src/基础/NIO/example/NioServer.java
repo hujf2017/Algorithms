@@ -7,6 +7,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.*;
@@ -21,7 +22,7 @@ public class NioServer {
 
     private final Selector selector;
     private final ServerSocketChannel serverSocketChannel;
-    private ExecutorService service = new ThreadPoolExecutor(4,50,10L, TimeUnit.SECONDS,new ArrayBlockingQueue(10));
+    private ExecutorService service = new ThreadPoolExecutor(4, 50, 10L, TimeUnit.SECONDS, new ArrayBlockingQueue(10));
 
 
     public static void main(String[] args) throws IOException {
@@ -35,42 +36,46 @@ public class NioServer {
         serverSocketChannel = ServerSocketChannel.open();
         //通道绑定端口
         serverSocketChannel.socket().bind(new InetSocketAddress(port));
-        //设置非阻塞
+        //设置非阻塞 Channel必须是非阻塞的。
+        //所以FileChannel不适用Selector，因为FileChannel不能切换为非阻塞模式，更准确的来说是因为FileChannel没有继承SelectableChannel。Socket channel可以正常使用。
         serverSocketChannel.configureBlocking(false);
         //注册SelectionKey sk =
-        serverSocketChannel.register(selector,SelectionKey.OP_ACCEPT);
+        serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
         //绑定接收事件处理器、object
-       // sk.attach(new Acceptor(serverSocketChannel,selector));
-        System.out.print("NIOserver start------");
+        // sk.attach(new Acceptor(serverSocketChannel,selector));
+        System.out.println("NIOserver start------");
     }
+
     //接受客户端
     public void accept(SelectionKey key) {
         try {
             ServerSocketChannel ssc = (ServerSocketChannel) key.channel();
             SocketChannel sc = ssc.accept();
-            sc.configureBlocking(false);
-            sc.register(selector, SelectionKey.OP_READ);
-            System.out.println("accept a client : " + sc.socket().getInetAddress().getHostName());
+            if(sc!=null) {
+                sc.configureBlocking(false);
+                sc.register(selector, SelectionKey.OP_READ);
+                System.out.println("accept a client : 127.0.0.1" );
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void start(){
-        while (true){
+    public void start() {
+        while (true) {
             try {
                 int events = selector.select();
-                if(events>0){
+                if (events > 0) {
                     Set selected = selector.selectedKeys();
                     Iterator<SelectionKey> it = selected.iterator();
-                    while (it.hasNext()){
+                    while (it.hasNext()) {
                         SelectionKey key = it.next();
-                       if(key.isAcceptable()){
-                           //
-                           accept(key);
-                       }else{
+                        if (key.isAcceptable()) {
+                            //
+                            accept(key);
+                        } else {
                             service.submit(new NioServerHandler(key));
-                       }
+                        }
                     }
                 }
             } catch (IOException e) {
@@ -79,7 +84,7 @@ public class NioServer {
         }
     }
 
-    public static class NioServerHandler implements Runnable{
+    public static class NioServerHandler implements Runnable {
         private SelectionKey selectionKey;
 
         public NioServerHandler(SelectionKey selectionKey) {
@@ -95,9 +100,10 @@ public class NioServer {
                     ByteBuffer buffer = ByteBuffer.allocate(1024);
                     socketChannel.read(buffer);
                     buffer.flip();
-                    System.out.println("收到客户端"+socketChannel.socket().getInetAddress().getHostName()+"的数据："+new String(buffer.array()));
+                    System.out.println("收到客户端" + socketChannel.socket().getInetAddress().getHostName() + "的数据：" + new String(buffer.array()));
                     //将数据添加到key中
-                    ByteBuffer outBuffer = ByteBuffer.wrap(buffer.array());
+//                    ByteBuffer outBuffer = ByteBuffer.wrap(buffer.array());
+                    ByteBuffer outBuffer = ByteBuffer.wrap("我是服务器".getBytes(StandardCharsets.UTF_8));
                     socketChannel.write(outBuffer);// 将消息回送给客户端
                     selectionKey.cancel();
                 }

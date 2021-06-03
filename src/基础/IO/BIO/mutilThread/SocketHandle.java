@@ -30,8 +30,9 @@ public class SocketHandle implements Runnable {
             int n = 0;
             while ((n = bufferedInput.read()) != -1) {//阻塞
                 System.out.print((char) n);
-                out = socket.getOutputStream();
-                out.write((char) n);
+                //回写
+//                out = socket.getOutputStream();
+//                out.write((char) n);
             }
         } catch (IOException e) {
             e.printStackTrace();
