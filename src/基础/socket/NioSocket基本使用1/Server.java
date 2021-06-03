@@ -1,6 +1,7 @@
 package 基础.socket.NioSocket基本使用1;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.InetSocketAddress;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -27,7 +28,6 @@ public class Server {
         channel.register(selector, SelectionKey.OP_ACCEPT);
 
         System.out.println("监听本机8081");
-
 
         while(true){
             int events = selector.select();

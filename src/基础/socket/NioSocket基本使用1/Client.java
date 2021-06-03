@@ -25,17 +25,13 @@ public class Client {
         channel.register(selector, SelectionKey.OP_CONNECT);
         channel.connect(new InetSocketAddress("127.0.0.1",8081));
 
-//        while (true) {
-//            selector.select();
-//            Set<SelectionKey> selectionKeys = selector.selectedKeys();
-//            for (SelectionKey key : selectionKeys) {
-//                ClientHandler.deatwith(key,selector);
-//            }
-//            selectionKeys.clear();
-   //     }
-        ByteBuffer buffer =  ByteBuffer.allocate(1024);
-        buffer.put("aaa".getBytes(StandardCharsets.UTF_8));
-        channel.write(buffer);
-        channel.close();
+        while (true) {
+            selector.select();
+            Set<SelectionKey> selectionKeys = selector.selectedKeys();
+            for (SelectionKey key : selectionKeys) {
+                ClientHandler.deatwith(key);
+            }
+            selectionKeys.clear();
+       }
     }
 }
