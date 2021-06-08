@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
  * @author Hujf
  * @title: TestClass
  * @date 2021-06-03 17:11
- * @description: TODO
+ * @description: 反射创建对象获取信息
  */
 public class TestClass {
     public static void main(String[] args) {

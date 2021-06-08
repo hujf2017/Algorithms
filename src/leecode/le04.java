@@ -117,4 +117,22 @@ public class le04 {
 
         }
     }
+
+
+    public static double findMedianSortedArrays1(int[] nums1, int[] nums2) {
+        int aim;
+        int len  = nums1.length +nums2.length ;
+        int len2 = len/2;
+        int last ;
+        for(int i=0, j=0;i+j<len2;){
+            if(nums1[i]<nums2[j]){
+                last = nums1[i];
+                i++;
+            }else{
+                last = nums2[j];
+                j++;
+            }
+        }
+        return 1.0;
+    }
 }
