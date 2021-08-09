@@ -15,8 +15,8 @@ public class pat9 {
     public static void main(String[] args) throws IOException {
         InputStreamReader inputStreamReader = new InputStreamReader(System.in);
         BufferedReader buf = new BufferedReader(inputStreamReader);
-        String s1[] = buf.readLine().split(" ");
-        String s2[] = buf.readLine().split(" ");
+        String[] s1 = buf.readLine().split(" ");
+        String[] s2 = buf.readLine().split(" ");
         double[] ds = new double[2001];
         int count = 0;
         for (int i = 1; i < s1.length; i = i + 2) {
