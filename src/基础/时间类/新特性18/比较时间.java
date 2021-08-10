@@ -11,7 +11,7 @@ import java.util.List;
  * @author Hujf
  * @title: 比较时间
  * @date 2020/11/28 0028上午 11:38
- * @description: 当前连续签到最大数和最近天数
+ * @description: 当前连续签到最大数和最近连续天数
  */
 public class 比较时间 {
     @Test
@@ -38,7 +38,7 @@ public class 比较时间 {
         int countMax=0;
         LocalDate datex = LocalDate.of(2020,11,27);
         for(String sx :date){
-            LocalDate ds = LocalDate.parse(sx, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            LocalDate ds = LocalDate.parse(sx);
             while(!ds.isEqual(datex)){
                 if(countMax<countNow){
                     countMax = countNow;
