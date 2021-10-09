@@ -13,7 +13,7 @@ public class VolatileDemo {
     volatile boolean flag =false;
 
     final static int MAX= 5;
-    static volatile int init_value =0;
+    static  int init_value =0;
     public static void main(String[] args) {
         new Thread(()->{
            int localValue = init_value;

@@ -12,6 +12,10 @@ public class AtomicReferenceTest {
 
     public static void main(String[] args) {
         String initialReference = "the initially referenced string";
+        String a = new String("the initially referenced string");
+
+        System.out.println(a==initialReference);
+        System.out.println(a.equals(initialReference));
         AtomicReference atomicReference = new AtomicReference(initialReference);
         System.out.println("atomicStringReference.get() = " + atomicReference);
         atomicReference.set("test test test");
