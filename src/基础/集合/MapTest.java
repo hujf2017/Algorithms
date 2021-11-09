@@ -1,5 +1,7 @@
 package 基础.集合;
 
+import org.junit.Test;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -61,5 +63,30 @@ public class MapTest {
         public int hashCode() {
             return Integer.parseInt(id);
         }
+    }
+
+    @Test
+    public void test(){
+        String s  ="Aa";
+        String s2 = "BB";
+
+        System.out.println(s.hashCode());
+        System.out.println(s2.hashCode());
+
+        System.out.println(s.equals(s2));
+
+        Map m = new HashMap(2);
+        m.put(s,"1");
+        m.put(s,"2");
+        m.put(s2,"3");
+        System.out.println(m.size());
+        Iterator<Map.Entry<String,String>> iterator = m.entrySet().iterator();
+        while (iterator.hasNext()){
+            Map.Entry<String, String> next = iterator.next();
+            System.out.println(next.getKey());
+            System.out.println(next.getValue());
+        }
+
+
     }
 }

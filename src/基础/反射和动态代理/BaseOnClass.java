@@ -14,14 +14,13 @@ import java.lang.reflect.Method;
  */
 
 
-
-interface  BashInter{
-     void addBook();
+interface BashInter {
+    void addBook();
 }
 
-public class BaseOnClass implements BashInter{
+public class BaseOnClass implements BashInter {
     @Override
-    public void addBook(){
+    public void addBook() {
         System.out.println("cglib@impl add book");
     }
 }
@@ -29,7 +28,7 @@ public class BaseOnClass implements BashInter{
 class BookProxy2 implements MethodInterceptor {
     private Object object;
 
-    public Object getInstance(Object o){
+    public Object getInstance(Object o) {
         this.object = o;
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(object.getClass());
