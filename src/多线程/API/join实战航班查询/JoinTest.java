@@ -18,7 +18,7 @@ public class JoinTest {
                 System.out.println(111);
             }
         });
-        a.setDaemon(false);
+        a.setDaemon(true);
         a.start();
      //   a.join();
         System.out.println("main thread is over ");
