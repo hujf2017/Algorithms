@@ -2,6 +2,8 @@ package leecode;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 /**
  * @author Hujf
  * @title: le473
@@ -56,4 +58,48 @@ public class le473 {
         }
         return a;
     }
+
+
+
+
+
+    public boolean makesquare(int[] matchsticks) {
+        int sum = Arrays.stream(matchsticks).sum();
+        if(sum%4!=0){
+            return false;
+        }
+        Arrays.sort(matchsticks);
+        return dfs(matchsticks,new int[4],sum/4,matchsticks.length-1);
+    }
+
+    private boolean dfs(int[] matchsticks, int[] ints, int aim,int index) {
+        if(index<0){
+            for(int x:ints){
+                if(aim!=x){
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        for(int i=0;i<ints.length;i++ ){
+            if(ints[i]==aim||(index == matchsticks.length - 1 && i > 0)){
+                continue;
+            }
+
+            ints[i]+=matchsticks[index];
+            if(ints[i]<=aim&&dfs(matchsticks,ints,aim,index-1)){
+                return true;
+            }
+            ints[i]-=matchsticks[index];
+        }
+        return false;
+    }
+
+    @Test
+    public void t(){
+        makesquare(new int[]{1,1,2,2,2});
+    }
+
+
 }
