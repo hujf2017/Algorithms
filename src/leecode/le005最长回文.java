@@ -94,13 +94,12 @@ public class le005最长回文 {
             if (max.length() < aim.length()) {
                 max = aim.toString();
             }
-        }
-        //在处理偶数
-        for (int i = 1; i < chars.length; i++) {
-            StringBuilder aim  = new StringBuilder();
-            aim = bfs2(aim, chars, i, 0);
-            if (max.length() < aim.length()) {
-                max = aim.toString();
+
+
+            StringBuilder aim2  = new StringBuilder();
+            aim2 = bfs2(aim2, chars, i, 0);
+            if (max.length() < aim2.length()) {
+                max = aim2.toString();
             }
         }
         return max;
