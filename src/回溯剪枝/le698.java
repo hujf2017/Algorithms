@@ -53,6 +53,6 @@ public class le698 {
 
     @Test
     public void t() {
-        canPartitionKSubsets(new int[]{1, 1, 2}, 2);
+        canPartitionKSubsets(new int[]{4, 3, 2, 3, 5, 2, 1}, 4);
     }
 }
