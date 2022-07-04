@@ -1,7 +1,8 @@
 package leecode;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.junit.Test;
+
+import java.util.*;
 
 /**
  * @author Hujf
@@ -10,31 +11,41 @@ import java.util.List;
  * @description: TODO
  */
 public class le39 {
-    public static void main(String args[]){
-        int []costs = {3,5,10,7,5,3,5,5,4,8,1};
-        System.out.println(combinationSum(costs,7));
-    }
 
-    public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+    int []num = new int[201];
+    List<List<Integer>> list = new ArrayList<>();
+    public  List<List<Integer>> combinationSum(int[] candidates, int target) {
 
-        List<List<Integer>> a = new ArrayList();
+
         for(int i=0;i<candidates.length;i++){
-           List a1 = calc(i,target);
-           
-           a.add(a1);
+            num[candidates[i]] =  1;
         }
+        List <Integer> lis= new ArrayList<>();
+        Arrays.sort(candidates);
+        dfs(target,candidates,lis,0);
 
-        return a ;
+        return list;
     }
 
-    private static List calc(int i, int target) {
-        List a = new ArrayList();
-        if(target == 0){
-            return a ;
-        }else if(target<0){
-
+    private void dfs(int target, int[] candidates,List lists,int begin) {
+        if(target<0){
+            return;
+        }else if(target ==0){
+            list.add(new ArrayList<>(lists));
+        }else {
+            for(int i=begin;i<candidates.length;i++){
+                lists.add(candidates[i]);
+                dfs(target-candidates[i],candidates,lists,i);
+                lists.remove(lists.size()-1);
+            }
         }
-        return a;
+    }
+
+
+    @Test
+    public void t(){
+        combinationSum(new int[]{100,200,4,1,
+},400);
     }
 
 
