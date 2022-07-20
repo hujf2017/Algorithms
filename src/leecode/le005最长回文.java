@@ -54,7 +54,7 @@ public class le005最长回文 {
 
     @Test
     public void t() {
-        longestPalindrome3("ccc");
+        longestPalindrome3("accca");
     }
 
     private void longestPalindrome(String s) {

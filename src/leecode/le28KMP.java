@@ -22,7 +22,6 @@ public class le28KMP {
         int local1 = -1;
         int next[] = new int[s.length()];
         next[0] = -1;
-        int sx = 5;
         while (local < s.length() - 1) {
             if (local1 == -1 || a[local1] == a[local]) {
                 next[++local] = ++local1;
@@ -63,6 +62,42 @@ public class le28KMP {
     public void test() {
        // kmp("1123456123");
 
-        indexof("123456778","456778");
+        indexof("444144414444","17173");
+    }
+
+
+    @Test
+    public void tes2t(){
+        String s = "17173";
+
+       int []num =  kmp2(s);
+
+    }
+
+    private int[] kmp2(String s) {
+        char[] chars = s.toCharArray();
+        int []num = new int[s.length()];
+        int index =0;
+
+        int back = -1;
+
+        num[0] = back;
+
+        while(index<num.length){
+
+            if(back==-1||chars[index]==chars[back]){
+                //前一个等于后一个   要加上
+                num[++index] = ++back;
+            }else{
+                //但是  当不相等时  需要回溯
+                back = num[back];
+
+            }
+
+
+
+        }
+
+        return num;
     }
 }

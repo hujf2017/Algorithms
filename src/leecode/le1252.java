@@ -10,7 +10,7 @@ import org.junit.Test;
  */
 public class le1252 {
 
-    @Test
+
     public int oddCells(int n, int m, int[][] indices) {
         int k[][] = new int[n][m];
         for(int i=0;i<indices.length;i++){
@@ -31,5 +31,33 @@ public class le1252 {
             }
         }
         return count;
+    }
+
+
+
+
+    public int oddCells2(int n, int m, int[][] indices) {
+
+        int []hen = new int[n];
+        int []shu = new int[m];
+        for(int i=0;i<indices.length;i++){
+            hen[indices[i][0]]+=1;
+            shu[indices[i][1]]+=1;
+        }
+        int count=0;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if((hen[j]+shu[i])%2==1){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+
+    @Test
+    public void t(){
+        oddCells2(2,3,new int[][]{{0,1},{1,1}});
     }
 }
