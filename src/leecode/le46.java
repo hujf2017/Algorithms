@@ -47,6 +47,6 @@ public class le46 {
 
     @Test
     public void t(){
-        permute(new int[]{1,2,3});
+        permute(new int[]{1,2,3,4});
     }
 }
