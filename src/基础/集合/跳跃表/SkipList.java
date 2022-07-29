@@ -199,7 +199,12 @@ public class SkipList<T> {
         System.out.println(list);
         list.put(4.0, "4.0");
         System.out.println(list);
-        list.put(4.0, "5.0");
+        list.put(5.0, "5.0");
+        list.put(6.0, "6.0");
+        list.put(7.0, "7.0");
+        list.put(8.0, "8.0");list.put(9.0, "9.0");
+
+
         System.out.println(list);
     }
 }
