@@ -20,38 +20,54 @@ public class ThreadTree {
         }
     }
 
-    private void buildTree( int left, int right, int nodeNum) {
+    private void buildTree(int left, int right, int nodeNum) {
         trees[nodeNum].left = left;
         trees[nodeNum].right = right;
         if (left == right) {
             trees[nodeNum].sum = data[left];
-            return;
         } else {
             int mid = (left + right) >> 1;
-            //二叉搜索树  *2 位置 找递归节点
-            buildTree( left, mid, nodeNum * 2);
-            buildTree( mid + 1, right, nodeNum * 2 + 1);
-            trees[nodeNum].sum = trees[nodeNum * 2].sum + trees[nodeNum * 2 + 1].sum;
+            buildTree(left, mid, nodeNum * 2);
+            buildTree(mid + 1, right, nodeNum * 2 + 1);
+            trees[nodeNum].sum = trees[left].sum + trees[right].sum;
         }
     }
 
     //查找指定范围内的和
     public int getSum(int left, int right, int nodeNum) {
-        int mid = (trees[nodeNum].left + trees[nodeNum].right) >> 1;
-
         if (trees[nodeNum].left == trees[nodeNum].right || (trees[nodeNum].left == left && trees[nodeNum].right == right)) {
             return trees[nodeNum].sum;
         }
 
-        if (mid >= right) {
+        int mid = (trees[nodeNum].left + trees[nodeNum].right) >> 1;
+        if(mid>=right){
             return getSum(left, right, 2 * nodeNum);
-        } else if (mid < left) {
+        }else if(mid < left){
             return getSum(left, right, 2 * nodeNum + 1);
-        } else {
+        }else {
             int temp = getSum(left, right, 2 * nodeNum);
             int temp1 = getSum(left, right, 2 * nodeNum + 1);
             return temp + temp1;
         }
+
+
+
+
+//        int mid = (trees[nodeNum].left + trees[nodeNum].right) >> 1;
+//
+//        if (trees[nodeNum].left == trees[nodeNum].right || (trees[nodeNum].left == left && trees[nodeNum].right == right)) {
+//            return trees[nodeNum].sum;
+//        }
+//
+//        if (mid >= right) {
+//            return getSum(left, right, 2 * nodeNum);
+//        } else if (mid < left) {
+//            return getSum(left, right, 2 * nodeNum + 1);
+//        } else {
+//            int temp = getSum(left, right, 2 * nodeNum);
+//            int temp1 = getSum(left, right, 2 * nodeNum + 1);
+//            return temp + temp1;
+//        }
     }
 
     //更新线段树
