@@ -1,6 +1,5 @@
 package 面试.阿里;
 
-import org.junit.Test;
 
 /**
  * @author Hujf
@@ -46,7 +45,6 @@ public class 大数和 {
 
         return buffer.reverse().toString();
     }
-    @Test
     public void t(){
         solve("733064366","459309139");
     }
