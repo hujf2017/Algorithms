@@ -1,5 +1,7 @@
 package leecode;
 
+import org.junit.Test;
+
 /**
  * @author Hujf
  * @title: le1460
@@ -15,6 +17,20 @@ public class le1460 {
             c+=target[i];
             d+=arr[i];
         }
-        return (a==b)&&(c==d);
+        return (a==b);
+    }
+
+    public boolean canBeEqual2(int[] target, int[] arr) {
+        int []num = new int[1001];
+        for(int i=0;i<target.length;i++){
+            num[target[i]]++;
+            num[arr[i]]--;
+        }
+        for(int i=0;i<num.length;i++){
+            if(num[i]!=0){
+                return false;
+            }
+        }
+        return true;
     }
 }

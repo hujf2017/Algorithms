@@ -29,7 +29,7 @@ public class ThreadTree {
             int mid = (left + right) >> 1;
             buildTree(left, mid, nodeNum * 2);
             buildTree(mid + 1, right, nodeNum * 2 + 1);
-            trees[nodeNum].sum = trees[left].sum + trees[right].sum;
+            trees[nodeNum].sum = trees[nodeNum * 2].sum + trees[nodeNum * 2 + 1].sum;
         }
     }
 
@@ -100,7 +100,7 @@ public class ThreadTree {
         int[] ints = {0, 1, 2, 3, 4, 5};
         ThreadTree threadTree = new ThreadTree(ints);
         threadTree.buildTree(1, threadTree.data.length - 1, 1);
-        int sum = threadTree.getSum(2, 4, 1);
+        int sum = threadTree.getSum(1, 1, 1);
         System.out.println(sum);
         threadTree.update(3, 2, 1);
         System.out.println(threadTree.getSum(2, 4, 1));

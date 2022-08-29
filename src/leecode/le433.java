@@ -1,5 +1,7 @@
 package leecode;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,44 +14,59 @@ import java.util.Set;
  */
 public class le433 {
 
+    String end ;
+
     public int minMutation(String start, String end, String[] bank) {
-        //找到start  和 end的 区别
+        this.end = end;
+        int min =Integer.MAX_VALUE;
+        for(int i=0;i< bank.length;i++){
+            if(start.equals(end)){
+                return 0;
+            }
+            boolean [] used = new boolean[bank.length];
+            used[i]=true;
+            if(panduan(start,bank[i])==1){
+                min = Math.min(min, dfs(i,used,bank,1));
+            }
+            used[i]=false;
+        }
+
+        return min==Integer.MAX_VALUE?-1:min;
+    }
+
+    private int dfs(int  next, boolean [] used,String[] bank,int count ) {
+        if(bank[next].equals(end)){
+            return count;
+        }
+
+        used[next] = true;
+        int min = Integer.MAX_VALUE;
+        for(int i=0;i<bank.length;i++){
+            if(!used[i]&&panduan(bank[next],bank[i])==1){
+                 min=  Math.min(min,dfs(i,used,bank,count+1));
+            }
+        }
+        used[next] = false;
+        return min;
+    }
+
+    private int panduan(String start, String end) {
         char[] chars = start.toCharArray();
         char[] chars1 = end.toCharArray();
-        Set <Integer>set = new HashSet();
-        for(int i=0;i<chars.length;i++){
-            if(chars[i]!=chars1[i]){
-                set.add(i);
+        int count =0;
+        int count2 =0;
+        while(count<chars.length){
+            if(chars[count]!=chars1[count]){
+                count2++;
             }
+            count++;
         }
-
-        List<Set<Integer>> list = new ArrayList<>();
-
-        for(String s:bank){
-            char[] chars2 = s.toCharArray();
-            Set <Integer>set2 = new HashSet();
-            for(int i=0;i<chars.length;i++){
-                if(chars[i]!=chars2[i]){
-                    set2.add(i);
-                }
-            }
-            list.add(set2);
-        }
-
-        if(set.size()==0){
-            return 0;
-        }
-
-        while (set.size()>0){
-            for(Set set1:list){
-               if(set1.size()==1) {
-                   dfs(set1);
-               }
-            }
-        }
-        return 0;
+        return count2;
     }
 
-    private void dfs(Set set1) {
+    @Test
+    public void t(){
+        System.out.println(minMutation("AAAAACCC", "AACCCCCC", new String[]{"AAAACCCC","AAAACCCA","AAACCCCC","AACCCCCC"}));
     }
+
 }
