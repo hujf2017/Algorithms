@@ -1,5 +1,7 @@
 package leecode;
 
+import org.junit.Test;
+
 /**
  * @Author hujf
  * @Date 2022/8/29 18:28
@@ -7,20 +9,18 @@ package leecode;
  */
 public class le319 {
     public int bulbSwitch(int n) {
-       if(n<2){
-           return n;
-       }else {
-           int count =1;
-           for(int i=2;i<=n;i++){
-               if(n%i==0){
+        int count = 0;
+        for (int i = 1; i <= n; i++) {
+            int k = (int) Math.pow(i, 0.5);
+            if (k * k == i) {
+                count++;
+            }
+        }
+        return count;
+    }
 
-               }
-
-
-           }
-
-
-
-       }
+    @Test
+    public void t(){
+        bulbSwitch(4);
     }
 }
