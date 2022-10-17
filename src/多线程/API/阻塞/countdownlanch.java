@@ -29,7 +29,7 @@ public class countdownlanch {
                 count.countDown();
             }
         }).start();
-       // count.await();
+        count.await();
         System.out.println("end");
     }
 }

@@ -42,6 +42,36 @@ public class le817 {
 
     }
 
+
+    public int numComponents2(ListNode head, int[] nums) {
+        ListNode node = head;
+        boolean zero = false;
+        int[] numx = new int[10001];
+        for (int i : nums) {
+            numx[i] = 1;
+        }
+        int count = 0;
+        while (node != null) {
+            int val = node.val;
+            if (numx[val] ==0) {
+                if (!zero) {
+                    count++;
+                    zero = true;
+                }
+            } else {
+                zero = false;
+            }
+            node = node.next;
+        }
+
+        if(numx[head.val]==0){
+            count--;
+        }
+
+        return zero?count:count+1;
+    }
+
+
     @Test
     public void t() {
 

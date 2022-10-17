@@ -12,12 +12,13 @@ import java.util.Arrays;
 public class le769 {
 
     public int maxChunksToSorted(int[] arr) {
-        int Max =0;
+        int[] as = arr.clone();
+        Arrays.sort(as);
+        int max  = as[0];
         int count =0;
         for(int i=0;i<arr.length;i++){
-            int k = arr[i];
-            Max = Math.max(k ,Max);
-            if(Max ==i){
+            max = Math.max(max,arr[i]);
+            if(max == as[i]){
                 count++;
             }
         }
@@ -26,7 +27,7 @@ public class le769 {
 
 
     @Test
-    public void t(){
-        maxChunksToSorted(new int[]{1,0,2,3,4});
+    public void t() {
+        maxChunksToSorted(new int[]{1, 0, 2, 3, 4});
     }
 }
