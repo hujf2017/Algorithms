@@ -38,6 +38,21 @@ public class le2430 {
         return k[0];
     }
 
+
+
+
+    public  void test(String s ){
+        int [][] num = new int[s.length()+1][s.length()+1];
+        for(int i=s.length()-1;i>=0;i--){
+            for(int j=s.length()-1;j>=0;j--){
+                if(s.charAt(i)==s.charAt(j)){
+                    num[i][j] = num[i+1][j+1]+1;
+                }
+            }
+        }
+        System.out.println(num);
+    }
+
     @Test
     public void t(){
         deleteString("aaabaab");

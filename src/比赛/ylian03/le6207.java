@@ -31,13 +31,14 @@ public class le6207 {
                 maxLocal = i;
             }
             int num;
-            if ( (num= Math.min(minLocal, maxLocal) - l) > 0) {
+            if ((num = Math.min(minLocal, maxLocal) - l) > 0) {
                 res += num;
             }
         }
 
         return res;
     }
+
 
     @Test
     public void t() {
