@@ -54,28 +54,37 @@ public class le005最长回文 {
 
     @Test
     public void t() {
-        longestPalindrome3("accca");
+        longestPalindrome("accca");
     }
 
     private void longestPalindrome(String s) {
         int n = s.length();
         boolean[][] dp = new boolean[n][n];
-        String ans = "";
+        int max = 0;
         for (int i = 0; i < n; i++) {
-            for (int j = 0; i + j < n; j++) {
-                int l = i + j;
-                if (l == 0) {
-                    dp[j][i] = true;
-                } else if (l == 1) {
-                    dp[j][l] = (s.charAt(j) == s.charAt(j));
-                } else {
-                    dp[j][l] = (s.charAt(i) == s.charAt(j) && dp[i + 1][j - 1]);
+            dp[i][i] = true;
+            for (int j = i + 1; j < n; j++) {
+                if (dp[i][j]) {
+                    continue;
                 }
-                if (dp[j][j] && l + 1 > ans.length()) {
-                    ans = s.substring(i, i + l + 1);
+                dp[i][j] = dfs(dp, s, i, j);
+                if (dp[i][j]) {
+                    max = Math.max(j - i + 1, max);
                 }
-
             }
+        }
+        System.out.println(max);
+    }
+
+    private boolean dfs(boolean[][] dp, String s, int left, int right) {
+        if (left == right) {
+            dp[left][right] = true;
+            return true;
+        } else if (left + 1 == right) {
+            dp[left][right] = s.charAt(left) == s.charAt(right);
+            return dp[left][right];
+        } else {
+            return (s.charAt(left) == s.charAt(right))&&dfs(dp, s, left + 1, right - 1);
         }
     }
 
@@ -88,7 +97,7 @@ public class le005最长回文 {
         String max = String.valueOf(chars[0]);
         //先处理奇数的
         for (int i = 1; i < chars.length; i++) {
-            StringBuilder aim  = new StringBuilder();
+            StringBuilder aim = new StringBuilder();
             aim.append(chars[i]);
             aim = bfs(aim, chars, i, 1);
             if (max.length() < aim.length()) {
@@ -96,7 +105,7 @@ public class le005最长回文 {
             }
 
 
-            StringBuilder aim2  = new StringBuilder();
+            StringBuilder aim2 = new StringBuilder();
             aim2 = bfs2(aim2, chars, i, 0);
             if (max.length() < aim2.length()) {
                 max = aim2.toString();
@@ -107,7 +116,7 @@ public class le005最长回文 {
 
     private StringBuilder bfs2(StringBuilder num, char[] chars, int i, int index) {
         if (i - index > 0 && i + index < chars.length && chars[i - 1 - index] == chars[i + index]) {
-            num.insert(0,chars[i - 1 - index]);
+            num.insert(0, chars[i - 1 - index]);
             num.append(chars[i + index]);
             bfs2(num, chars, i, ++index);
         }
@@ -116,7 +125,7 @@ public class le005最长回文 {
 
     private StringBuilder bfs(StringBuilder num, char[] chars, int i, int index) {
         if (i - index >= 0 && i + index < chars.length && chars[i - index] == chars[i + index]) {
-            num.insert(0,chars[i - index]);
+            num.insert(0, chars[i - index]);
             num.append(chars[i + index]);
             bfs(num, chars, i, ++index);
         }
