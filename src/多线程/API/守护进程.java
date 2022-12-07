@@ -20,7 +20,7 @@ public class 守护进程 {
             }
         });
 
-   //     thread.setDaemon(true);
+        thread.setDaemon(true);
 
         thread.start();
         System.out.println("main end ");
